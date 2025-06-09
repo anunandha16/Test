@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Form with Desktop-style Menu Bar</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+
+  .menu-bar {
+    background-color: #ddd;
+    display: flex;
+    border-bottom: 1px solid #aaa;
+    user-select: none;
+  }
+
+  .menu-item {
+    position: relative;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+
+  .menu-item:hover {
+    background-color: #bbb;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #eee;
+    border: 1px solid #aaa;
+    min-width: 150px;
+    z-index: 1000;
+  }
+
+  .menu-item:hover .dropdown {
+    display: block;
+  }
+
+  
+  .dropdown-item {
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+
+  .dropdown-item:hover {
+    background-color: #ccc;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  input[type="text"], input[type="email"], input[type="number"] {
+    padding: 8px;
+    width: 250px;
+    margin-top: 5px;
+  }
+
+  input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #output {
+    margin-top: 20px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 350px;
+  }
+</style>
+</head>
+<body>
+
+<div class="menu-bar">
+  <div class="menu-item">File
+    <div class="dropdown">
+      <div class="dropdown-item">New</div>
+      <div class="dropdown-item">Open</div>
+      <div class="dropdown-item">Save</div>
+      <div class="dropdown-item">Exit</div>
+    </div>
+  </div>
+  <div class="menu-item">Edit
+    <div class="dropdown">
+      <div class="dropdown-item">Undo</div>
+      <div class="dropdown-item">Redo</div>
+      <div class="dropdown-item">Cut</div>
+      <div class="dropdown-item">Copy</div>
+      <div class="dropdown-item">Paste</div>
+    </div>
+  </div>
+  <div class="menu-item">Select
+    <div class="dropdown">
+      <div class="dropdown-item">Select All</div>
+      <div class="dropdown-item">Deselect</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <form id="myForm">
+    <label for="name">Name:</label><br />
+    <input type="text" id="name" name="name" /><br /><br />
+
+    <label for="email">Email:</label><br />
+    <input type="email" id="email" name="email" required /><br /><br />
+
+    <label for="number">Phone Number:</label><br />
+    <input type="number" id="number" name="number" /><br /><br />
+
+    <input type="submit" value="Submit" />
+  </form>
+
+  <div id="output"></div>
+</div>
+
+<script>
+  document.getElementById("myForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const number = document.getElementById("number").value;
+
+    const outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = `
+      <h3>Entered Information:</h3>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone Number:</strong> ${number}</p>
+    `;
+  });
+</script>
+
+</body>
+</html>
